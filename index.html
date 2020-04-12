@@ -70,7 +70,6 @@ https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-
 		var resultText = document.getElementById("results");
             	resultText.innerHTML = "Probability it is allergies = " + allergyPercent + "% <br>Probability it is a cold = " + coldPercent + "% <br>Probability it is the flu = " + fluPercent + "% <br>Probability it is coronavirus = " + coronavirusPercent + "%";
         }
-	
 </script>
 
 
@@ -314,6 +313,7 @@ https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-
 		<p>Be Healthy!</p>
 	</div>
 </div>
+
 <!-- This produces footer at the bottom of the page to indicate it's for DIY -->
 <footer class="w3-bottom w3-container w3-flat-carrot">
 	<p>DIY!</p>
@@ -321,3 +321,50 @@ https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-
 
 </body>
 </html>
+	
+/*this instructs the drawing of a bar graph with variables that help define what how it is to be drawn put with other functions
+ draw(){
+	var b_canvas = document.getElementById("b"); //this retrieves the canvas
+	var b_context = b_canvas.getContext("2d"); //this rebuilds the canvas context
+	var bar_width=100;
+	var y_gap=30;  // Gap below the graph 
+	var bar_gap=125; // Gap between Bars including width of the bar
+	var x= 5; // Margin of graph from left
+	y=b_canvas.height-y_gap;
+	b_canvas.width=data.length*(bar_gap)+x;
+	b_context.moveTo(x-5,y);
+	b_context.lineTo(b_canvas.width,y); // Base line of graph 
+	b_context.stroke();
+	for (i=0;i<data.length;i++){
+		b_context.font = '18px serif'; // font for base label showing classes 
+		b_context.textAlign='left';
+		b_context.textBaseline='top';
+		b_context.fillStyle= '#008cf5';
+		b_context.fillText(data[i][0], x,y+5); // Write base text for classes 
+		b_context.beginPath();
+		b_context.lineWidth=2;
+		y1=y-data[i][1]; // Coordinate for top of the Bar 
+		x1 = x;    
+		b_context.font = '12px serif'; // font at top of the bar 
+		b_context.fillStyle= '#000000';
+		b_context.fillText(data[i][1], x1,y1-20); // text at top of the bar 
+		b_context.fillStyle= '#f52369'; // fill Colur of bar  
+		b_context.fillRect(x1,y1,bar_width,data[i][1]);// Filled bar 
+		x=x+bar_gap
+		}
+	var data = [["coronavirus",coronavirusAdd()*20;],["cold",coldAdd()*20;],["flu",fluAdd()*20;],["allergy",allergyAdd()*20;]];	
+}
+		<a href="#graph" onclick="draw();" class="w3-btn w3-grey w3-round">display</a>\
+		<!-- This produces the display page to show the probabilities in a bar graph-->
+		<div class="page" id="graph">
+			<!-- This produces the graph title -->
+			<div id="header" class="w3-container w3-flat-carrot">
+				<h1>Bar Graph</h1>
+			<!--This produces a bordered canvas sized to fit a phone screen on the final page-->
+			<canvas id="b" width="500" height="250" style="border:1px solid #000000;"></canvas>
+			</div>
+			<div id="content" class="w3-container">
+				<p>Be Healthy!</p>
+			</div>
+		</div>
+*/
