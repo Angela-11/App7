@@ -17,7 +17,7 @@ Timothy Riedel
 triedel@utexas.edu
  
 Brief Description of Goal of Code:
-This code is expected to produce the probability of symptoms being due to either the cold or allergies.
+This code is expected to produce the probability of symptoms being Coronavirus, cold, flu, or seasonal allergies.
 
 Known Issues:
 Not medically accurate. 
@@ -39,6 +39,8 @@ https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-
 	//variables ensure the calculation starts with the click of the buttons for each respective illness
         var allergy_count = 0;
         var cold_count = 0;
+	var flu_count = 0;
+	var coronavirus_count = 0;
 	//this functions counts the answers that are symptoms of allergy
         function allergyAdd(){
             allergy_count = allergy_count + 1;
@@ -49,12 +51,24 @@ https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-
             cold_count = cold_count + 1;
 		alert(cold_count);		
         }
-	//this functions calculates the probability of the symptoms being either a cold or allergy with the .innerHTML outputing the results on the results page
+	//this functions counts the answers that are symptoms of flu
+        function fluAdd(){
+            flu_count = flu_count + 1;
+		alert(flu_count);		
+        }
+	//this functions counts the answers that are symptoms of coronavirus
+        function coronavirusAdd(){
+            coronavirus_count = coronavirus_count + 1;
+		alert(coronavirus_count);		
+        }
+	//this functions calculates the probability of the symptoms being either a coronavirus, cold, flu, or allergy with the .innerHTML outputing the results on the results page
         function percentages(){
-		var allergyPercent  = (allergy_count / (4)) * 100;
-		var coldPercent = (cold_count / (4)) * 100;
+		var allergyPercent  = (allergy_count / (11)) * 100;
+		var coldPercent = (cold_count / (11)) * 100;
+		var fluPercent = (flu_count / (11)) * 100;
+		var coronavirusPercent = (coronavirus_count / (11)) * 100;
 		var resultText = document.getElementById("results");
-            	resultText.innerHTML = "Probability it is allergies = " + allergyPercent + "% <br>Probability it is a cold = " + coldPercent + "%";
+            	resultText.innerHTML = "Probability it is allergies = " + allergyPercent + "% <br>Probability it is a cold = " + coldPercent + "% <br>Probability it is the flu = " + fluPercent + "% <br>Probability it is coronavirus = " + coronavirusPercent + "%";
         }
 	
 </script>
@@ -82,21 +96,23 @@ https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-
     z-index: 1;
 }
 </style>
+	
 <!-- This produces the introduction page -->
 <body>
 <!-- This produces the introduction's title -->
 <div id="header" class="w3-container w3-flat-carrot">
-	<h1>Cold or Allergies?</h1>
+	<h1>Respiratory Illness Type?</h1>
 </div>
 <!-- This produces the introduction content -->
 <div id="content" class="w3-container">
-	<p>Are you feeling like you might have a cold but wonder if it is allergies. Answer a few short questions to find out!</p>
+	<p>Are you feeling like you might have a respiratory illness but wondering what exactly? Answer a few short questions to find out!</p>
 	<!-- This produces the button -->
 	<a href="#one" class="w3-btn w3-grey w3-round"> Get Started </a>
 	
 	<p>The following code has been developed by students and/or researchers of the Freshman Research Initiative DIY Diagnostics Stream at The University of Texas at 		Austin.  This code is shared for demonstration purposes and should not be considered a product -- it is for entertainment purposes only. Any user of this code 			does so at their own risk. Members of the DIY Stream, FRI, and The University of Texas system are not liable for anything related to this code.</p>
  	
 	<p>THIS CODE SHOULD NOT BE USED TO DIAGNOSE ANY KIND OF MEDICAL CONDITION.</p>
+
 <!-- This produces the first question -->
 <div class="page" id="one">
 	<!-- This produces the header of the first question -->
@@ -105,12 +121,15 @@ https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-
 	</div>
 	<!-- This produces the content of the first question -->
     	<div id="content" class="w3-container">
-        	<p>Are your eyes watery or itchy?</p>  
-		<!-- This produces the yes or no buttons that will count the results -->
-		<a href="#two"  onclick="allergyAdd();" class="w3-btn w3-black"> Yes</a>
-         	<a href="#two"  onclick="coldAdd();" class="w3-btn w3-black">No</a>
+        	<p>How long have the symptoms shown?</p>  
+		<!-- This produces the buttons that will count the results -->
+		<a href="#two"  onclick="coronavirusAdd();" class="w3-btn w3-black">7-25 Days</a>
+         	<a href="#two"  onclick="coldAdd();" class="w3-btn w3-black">Lesss Than 14 Days</a>
+		<a href="#two"  onclick="fluAdd();" class="w3-btn w3-black">7-14 Days</a>
+		<a href="#two"  onclick="allergyAdd();" class="w3-btn w3-black">Several Weeks</a>
     	</div>
 </div>
+	
 <!-- This produces the page with the second question -->
 <div class="page" id="two">
 	<!-- This produces the second question's title -->
@@ -119,12 +138,14 @@ https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-
 	</div>
 	<!-- This produces the conetent of the second question -->
 	<div id="content" class="w3-container">
-		<p>Do you have a fever?</p>
-		<!-- This produces the yes or no buttons that will count the results -->
-		<a href="#three"  onclick="coldAdd();" class="w3-btn w3-black">Yes</a>
-		<a href="#three"  onclick="allergyAdd();" class="w3-btn w3-black"> No</a>
+		<p>What type of cough is present?</p>
+		<!-- This produces the buttons that will count the results -->
+		<a href="#three"  onclick="coronavirusAdd(); + fluAdd();" class="w3-btn w3-black">Dry</a>
+         	<a href="#three"  onclick="coldAdd();" class="w3-btn w3-black">Mild</a>
+		<a href="#three"  onclick="allergyAdd();" class="w3-btn w3-black">No Cough</a>
 	</div>
 </div>	
+	
 <!-- This produces the page with the third question -->
 <div class="page" id="three">
 	<!-- This produces the third question's title -->
@@ -133,12 +154,13 @@ https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-
 	</div>
 	<!-- This produces the content of the third question -->
 	<div id="content" class="w3-container">
-		<p>Do you have a sore throat?</p>
-		<!-- This produces the yes or no buttons that will count the results -->
-		<a href="#four"  onclick="coldAdd();" class="w3-btn w3-black">Yes</a>
-		<a href="#four"  onclick="allergyAdd();" class="w3-btn w3-black"> No</a>
+		<p>Do you experience any shortness of breath?</p>
+		<!-- This produces the buttons that will count the results -->
+		<a href="#four"  onclick="coronavirusAdd();" class="w3-btn w3-black">Sometimes</a>
+         	<a href="#four"  onclick="coldAdd(); + fluAdd(); + allergyAdd();" class="w3-btn w3-black">No</a>
 	</div>
 </div>
+	
 <!-- This produces the page with the fourth question -->
 <div class="page" id="four">
 	<!-- This produces the fourth question's title -->
@@ -147,14 +169,127 @@ https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-
 	</div>
 	<!-- This produces the content of the fourth question -->
 	<div id="content" class="w3-container">
-		<p>Are your symptoms seasonal or chronic?</p>
-		<!-- This produces the yes or no buttons that will count the results -->
-		<a href="#five"  onclick="allergyAdd();" class="w3-btn w3-black"> Yes</a>
-         	<a href="#five"  onclick="coldAdd();" class="w3-btn w3-black">No</a>
+		<p>Do you sneeze?</p>
+		<!-- This produces the buttons that will count the results -->
+		<a href="#five"  onclick="coronavirusAdd(); + fluAdd();" class="w3-btn w3-black">No</a>
+         	<a href="#five"  onclick="coldAdd(); + allergyAdd();" class="w3-btn w3-black">Yes</a>
 	</div>
 </div>
-<!-- This produces the last page to show that the survey is over -->
+
+<!-- This produces the page with the fifth question -->
 <div class="page" id="five">
+	<!-- This produces the fifth question's title -->
+	<div id="header" class="w3-container w3-flat-carrot">
+		<h1>Question 5</h1>
+	</div>
+	<!-- This produces the content of the fifth question -->
+	<div id="content" class="w3-container">
+		<p>Do you have a runny or stuffy nose?</p>
+		<!-- This produces the buttons that will count the results -->
+		<a href="#six"  onclick="coronavirusAdd();" class="w3-btn w3-black">No</a>
+         	<a href="#six"  onclick="coldAdd(); + allergyAdd();" class="w3-btn w3-black">Common</a>
+		<a href="#six"  onclick="fluAdd();" class="w3-btn w3-black">Sometimes</a>
+	</div>
+</div>
+	
+<!-- This produces the page with the sixth question -->
+<div class="page" id="six">
+	<!-- This produces the sixth question's title -->
+	<div id="header" class="w3-container w3-flat-carrot">
+		<h1>Question 6</h1>
+	</div>
+	<!-- This produces the content of the sixth question -->
+	<div id="content" class="w3-container">
+		<p>Do you have a sore throat?</p>
+		<!-- This produces the buttons that will count the results -->
+		<a href="#seven"  onclick="coronavirusAdd(); + fluAdd();" class="w3-btn w3-black">Sometimes</a>
+         	<a href="#seven"  onclick="coldAdd();" class="w3-btn w3-black">Common</a>
+		<a href="#seven"  onclick="allergyAdd();" class="w3-btn w3-black">Mildly Sometimes</a>
+	</div>
+</div>	
+	
+<!-- This produces the page with the seventh question -->
+<div class="page" id="seven">
+	<!-- This produces the seventh question's title -->
+	<div id="header" class="w3-container w3-flat-carrot">
+		<h1>Question 7</h1>
+	</div>
+	<!-- This produces the content of the seventh question -->
+	<div id="content" class="w3-container">
+		<p>Do you have a fever?</p>
+		<!-- This produces the buttons that will count the results -->
+		<a href="#eight"  onclick="coronavirusAdd(); + fluAdd();" class="w3-btn w3-black">Common</a>
+         	<a href="#eight"  onclick="coldAdd();" class="w3-btn w3-black">Short Fever Period</a>
+		<a href="#eight"  onclick="allergyAdd();" class="w3-btn w3-black">No</a>
+	</div>
+</div>	
+	
+<!-- This produces the page with the eighth question -->
+<div class="page" id="eight">
+	<!-- This produces the eighth question's title -->
+	<div id="header" class="w3-container w3-flat-carrot">
+		<h1>Question 8</h1>
+	</div>
+	<!-- This produces the content of the eighth question -->
+	<div id="content" class="w3-container">
+		<p>Do you feel tired and weak?</p>
+		<!-- This produces the buttons that will count the results -->
+		<a href="#nine"  onclick="coronavirusAdd(); + coldAdd(); + allergyAdd();" class="w3-btn w3-black">Sometimes</a>
+         	<a href="#nine"  onclick="fluAdd();" class="w3-btn w3-black">Common</a>
+	</div>
+</div>	
+
+<!-- This produces the page with the ninth question -->
+<div class="page" id="nine">
+	<!-- This produces the ninth question's title -->
+	<div id="header" class="w3-container w3-flat-carrot">
+		<h1>Question 9</h1>
+	</div>
+	<!-- This produces the content of the ninth question -->
+	<div id="content" class="w3-container">
+		<p>Do you have headaches?</p>
+		<!-- This produces the buttons that will count the results -->
+		<a href="#ten"  onclick="coronavirusAdd();" class="w3-btn w3-black">Sometimes</a>
+         	<a href="#ten"  onclick="coldAdd();" class="w3-btn w3-black">Rarely</a>
+		<a href="#ten"  onclick="fluAdd();" class="w3-btn w3-black">Common</a>
+		<a href="#ten"  onclick="allergyAdd();" class="w3-btn w3-black">Sometimes Due To Sinus Pain</a>
+	</div>
+</div>
+	
+<!-- This produces the page with the tenth question -->
+<div class="page" id="ten">
+	<!-- This produces the tenth question's title -->
+	<div id="header" class="w3-container w3-flat-carrot">
+		<h1>Question 10</h1>
+	</div>
+	<!-- This produces the content of the tenth question -->
+	<div id="content" class="w3-container">
+		<p>Do you have body aches and pains?</p>
+		<!-- This produces the buttons that will count the results -->
+		<a href="#eleven"  onclick="coronavirusAdd();" class="w3-btn w3-black">Sometimes</a>
+		<a href="#eleven"  onclick="fluAdd(); + coldAdd();" class="w3-btn w3-black">Common</a>
+		<a href="#eleven"  onclick="allergyAdd();" class="w3-btn w3-black">No</a>
+	</div>
+</div>	
+		
+<!-- This produces the page with the eleventh question -->
+<div class="page" id="eleven">
+	<!-- This produces the eleventh question's title -->
+	<div id="header" class="w3-container w3-flat-carrot">
+		<h1>Question 11</h1>
+	</div>
+	<!-- This produces the content of the eleventh question -->
+	<div id="content" class="w3-container">
+		<p>Do you have diarrhea?</p>
+		<!-- This produces the buttons that will count the results -->
+		<a href="#last"  onclick="coronavirusAdd();" class="w3-btn w3-black">Sometimes</a>
+         	<a href="#last"  onclick="coldAdd(); + allergyAdd();" class="w3-btn w3-black">No</a>
+		<a href="#last"  onclick="fluAdd();" class="w3-btn w3-black">Sometimes For Children</a>
+	</div>
+</div>
+	
+<!-- This produces the last page to show that the survey is over -->
+<div class="page" id="last">
 	<!-- This produces the Finish title -->
 	<div id="header" class="w3-container w3-flat-carrot">
 		<h1>Finish</h1>
@@ -163,11 +298,12 @@ https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-
 	<div id="content" class="w3-container">
 		<p>Are you ready for your results?</p>
 		<!-- This produces the yes or no buttons that will count the results -->
-		<a href="#last" onclick="percentages();" class="w3-btn w3-grey w3-round">Results</a>
+		<a href="#final" onclick="percentages();" class="w3-btn w3-grey w3-round">Results</a>
 	</div>
 </div>
+	
 <!-- This produces the result page to show the probabilities -->
-<div class="page" id="last">
+<div class="page" id="final">
 	<!-- This produces the results title -->
 	<div id="header" class="w3-container w3-flat-carrot">
 		<h1>Results</h1>
